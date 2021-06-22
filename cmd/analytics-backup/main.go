@@ -34,10 +34,9 @@ func main() {
 func requiredFlags() []cli.Flag {
 	return []cli.Flag{
 		cli.StringFlag{
-			Name:     "credentials",
-			Usage:    "filename for service account credentials json",
-			Value:    "key.json",
-			Required: true,
+			Name:  "credentials",
+			Usage: "filename for service account credentials json",
+			Value: "key.json",
 		},
 		cli.StringFlag{
 			Name:     "view-id",
@@ -55,16 +54,14 @@ func requiredFlags() []cli.Flag {
 			Required: true,
 		},
 		cli.StringFlag{
-			Name:     "metrics",
-			Usage:    "metrics to include (separated by comma)",
-			Value:    "ga:sessions,ga:users",
-			Required: true,
+			Name:  "metrics",
+			Usage: "metrics to include (separated by comma)",
+			Value: "ga:sessions,ga:users",
 		},
 		cli.StringFlag{
-			Name:     "dimensions",
-			Usage:    "dimensions to include (separated by comma)",
-			Value:    "ga:date",
-			Required: true,
+			Name:  "dimensions",
+			Usage: "dimensions to include (separated by comma)",
+			Value: "ga:date",
 		},
 	}
 }
