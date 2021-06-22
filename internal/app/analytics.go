@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"strings"
 
@@ -72,9 +73,11 @@ func GetAnalyticReports(c *cli.Context) error {
 		return fmt.Errorf("got nil report %v", report)
 	}
 
-	js, _ := json.Marshal(report)
+	file, _ := json.Marshal(report)
 
-	log.Println("\n## fetched ", string(js))
+	_ = ioutil.WriteFile("output.json", file, 0644)
+
+	log.Println("\n## fetched ", string(file))
 
 	return nil
 }

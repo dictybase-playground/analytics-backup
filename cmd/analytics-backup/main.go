@@ -56,7 +56,8 @@ func requiredFlags() []cli.Flag {
 		cli.StringFlag{
 			Name:  "metrics",
 			Usage: "metrics to include (separated by comma)",
-			Value: "ga:sessions,ga:users",
+			// https://ga-dev-tools.appspot.com/dimensions-metrics-explorer/
+			Value: "ga:sessions,ga:users,ga:pageviews",
 		},
 		cli.StringFlag{
 			Name:  "dimensions",
