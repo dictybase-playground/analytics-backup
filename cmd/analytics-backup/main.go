@@ -62,7 +62,13 @@ func requiredFlags() []cli.Flag {
 		cli.StringFlag{
 			Name:  "dimensions",
 			Usage: "dimensions to include (separated by comma)",
+			// also of interest: ga:country,ga:pagePath
 			Value: "ga:date",
+		},
+		cli.StringFlag{
+			Name:  "output-file",
+			Usage: "name to use for output json file",
+			Value: "output.json",
 		},
 	}
 }
