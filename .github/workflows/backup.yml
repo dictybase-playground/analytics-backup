@@ -1,0 +1,26 @@
+name: google analytics backup
+# change to cron job
+on: push
+jobs:
+  backup:
+    env:
+      GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+    runs-on: ubuntu-20.04
+    steps:
+      - name: check out code
+        uses: actions/checkout@v2
+      - name: set up golang
+        uses: actions/setup-go@v2
+        with:
+          go-version: "^1.16.3"
+      - name: download and setup path for github actions binary
+        run: |
+          curl -L -o ${GITHUB_ACTION_DIR}/actions https://github.com/dictybase-docker/github-actions/releases/download/v2.3.0/action_2.3.0_Linux_x86_64
+          chmod +x ${GITHUB_ACTION_DIR}/actions
+          echo "${GITHUB_ACTION_DIR}" >> $GITHUB_PATH
+      - name: build local app
+        run: go build -o app cmd/analytics-backup/main.go
+      - name: generate weekly report
+        run: ./app reports --view-id ${{ secrets.DICTYBASE_VIEW_ID }} --start-date 2021-06-08 --end-date 2021-06-15
+      - name: view folder contents
+        run: ls
