@@ -20,7 +20,7 @@ jobs:
           chmod +x github-actions/bin/actions
           echo "$GITHUB_WORKSPACE/github-actions/bin" >> $GITHUB_PATH
       - name: build local app
-        run: go build -o app cmd/analytics-backup/main.go
+        run: go mod download && go build -o app cmd/analytics-backup/main.go
       - name: generate weekly report
         run: ./app reports --view-id ${{ secrets.DICTYBASE_VIEW_ID }} --start-date 2021-06-08 --end-date 2021-06-15
       - name: view folder contents
