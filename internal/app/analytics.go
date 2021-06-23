@@ -8,9 +8,7 @@ import (
 
 	"github.com/dictybase-playground/analytics-backup/internal/request"
 	"github.com/urfave/cli"
-	"golang.org/x/oauth2/google"
 	ga "google.golang.org/api/analyticsreporting/v4"
-	"google.golang.org/api/option"
 )
 
 func GetAnalyticReports(c *cli.Context) error {
