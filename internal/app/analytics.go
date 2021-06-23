@@ -8,13 +8,16 @@ import (
 
 	"github.com/dictybase-playground/analytics-backup/internal/request"
 	"github.com/urfave/cli"
+	"golang.org/x/oauth2/google"
 	ga "google.golang.org/api/analyticsreporting/v4"
 	"google.golang.org/api/option"
 )
 
 func GetAnalyticReports(c *cli.Context) error {
 	ctx := context.Background()
-	s, err := ga.NewService(ctx, option.WithCredentialsFile(c.String("credentials")))
+	// s, err := ga.NewService(ctx, option.WithCredentialsFile(c.String("credentials")))
+	// credentials stored in GOOGLE_APPLICATION_CREDENTIALS env
+	s, err := ga.NewService(ctx)
 	if err != nil {
 		return err
 	}
