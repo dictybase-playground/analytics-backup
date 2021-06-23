@@ -12,9 +12,11 @@ type GoogleAnalyticsRequest struct {
 	DateEnd    string
 	Metrics    string
 	Dimensions string
-	PageLimit  int
-	FetchAll   bool
 }
+
+const (
+	pageLimit = 100000 // maximum allowed
+)
 
 func MakeReportRequest(g GoogleAnalyticsRequest) ga.ReportRequest {
 	dr := make([]*ga.DateRange, 1)
@@ -37,7 +39,7 @@ func MakeReportRequest(g GoogleAnalyticsRequest) ga.ReportRequest {
 		Metrics:    metrics,
 		Dimensions: dimensions,
 		ViewId:     g.ViewID,
-		PageSize:   100000, // maximum allowed
+		PageSize:   pageLimit,
 	}
 
 	return req
