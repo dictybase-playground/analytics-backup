@@ -57,13 +57,12 @@ func requiredFlags() []cli.Flag {
 			Name:  "metrics",
 			Usage: "metrics to include (separated by comma)",
 			// https://ga-dev-tools.appspot.com/dimensions-metrics-explorer/
-			Value: "ga:sessions,ga:users,ga:pageviews",
+			Value: "ga:sessions,ga:users,ga:pageviews,ga:exits",
 		},
 		cli.StringFlag{
 			Name:  "dimensions",
 			Usage: "dimensions to include (separated by comma)",
-			// also of interest: ga:country,ga:pagePath
-			Value: "ga:date",
+			Value: "ga:date,ga:clientId,ga:pagePath,ga:previousPagePath,ga:country",
 		},
 		cli.StringFlag{
 			Name:  "output-file",
@@ -76,7 +75,7 @@ func requiredFlags() []cli.Flag {
 func RegCmd() cli.Command {
 	return cli.Command{
 		Name:   "reports",
-		Usage:  "gets google analytics report and converts to csv",
+		Usage:  "download google analytics json report",
 		Action: app.GetAnalyticReports,
 		Flags:  requiredFlags(),
 	}
